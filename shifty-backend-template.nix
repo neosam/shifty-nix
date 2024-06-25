@@ -25,7 +25,7 @@ in
 
     postInstall = ''
       cp -r $src/migrations $out/
-      echo "#!/usr/bin/env bash" >> $out/bin/start.sh
+      echo "#!${pkgs.bash}/bin/bash" >> $out/bin/start.sh
       echo "set +a" >> $out/bin/start.sh
       echo "${pkgs.sqlx-cli}/bin/sqlx migrate run --source $out/migrations/" >> $out/bin/start.sh
       echo "$out/bin/app" >> $out/bin/start.sh
