@@ -32,5 +32,5 @@ in
       chmod a+x $out/bin/start.sh
     '';
 
-    cargoHash = "sha256-FCOGQSvwJWMqjDpW/v8uLPtRNhO6lgw6zUHiCMxvq3g=";
+    cargoHash = "sha256-wXLFN7UptEHEhXOC6U9+fqbGFG7c6FAt/96kFFb6JGA=";
   }
