@@ -10,7 +10,7 @@ let
     owner = "neosam";
     repo = "shifty-backend";
     rev = "__VERSION__";
-    sha256 = "__SHA256__";
+    sha256 = "__REPO_HASH__";
   };
   #src = ./.;
   rustPlatform = specificPkgs.rustPlatform;
@@ -32,5 +32,5 @@ in
       chmod a+x $out/bin/start.sh
     '';
 
-    cargoHash = "sha256-gGj23mHL3+KpUzf5SzqaUKaNeaXl7SRP/TZfV4iEpk4=";
+    cargoHash = "__CARGO_HASH__";
   }
