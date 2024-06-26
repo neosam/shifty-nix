@@ -9,8 +9,8 @@ let
   src = pkgs.fetchFromGitHub {
     owner = "neosam";
     repo = "shifty-backend";
-    rev = "9011f223c73cb22ab49ba52081fd26d6c1f1858e";
-    sha256 = "sha256-+xpI0OhwbJdzB9Mis6s4x3LCfNzNaa8f3NUYe9JczRU=";
+    rev = "v0.1.1";
+    sha256 = "sha256-zrY8CTuR9ZDYQMyS/pc2O3wf4nnW1Huo2YTh9BmPqlc=";
   };
   #src = ./.;
   rustPlatform = specificPkgs.rustPlatform;
@@ -32,5 +32,5 @@ in
       chmod a+x $out/bin/start.sh
     '';
 
-    cargoHash = "sha256-wXLFN7UptEHEhXOC6U9+fqbGFG7c6FAt/96kFFb6JGA=";
+    cargoHash = "sha256-gGj23mHL3+KpUzf5SzqaUKaNeaXl7SRP/TZfV4iEpk4=";
   }
