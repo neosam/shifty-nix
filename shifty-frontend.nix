@@ -7,8 +7,8 @@ let
     sha256 = "sha256-4Zu0RYRcAY/VWuu6awwq4opuiD//ahpc2aFHg2CWqFY=";
   }) {};
   src = pkgs.fetchzip {
-    url = "https://github.com/neosam/shifty-dioxus/releases/download/v0.1.5-dev-05/shifty-frontend-v0.1.5-dev-05.tgz";
-    sha256 = "sha256-EsuVmBgeFd04D3yTiAbwFq7F0obuFiNnh4OJdM2Cxm4=";
+    url = "https://github.com/neosam/shifty-dioxus/releases/download/v0.1.5/shifty-frontend-v0.1.5.tgz";
+    sha256 = "sha256-R9ugcP2V/gL8DaPx9RpC11/AkHURM23Y6Qj7Jiz9xdM=";
   };
   mkDerivation = specificPkgs.stdenv.mkDerivation;
 in
