@@ -17,7 +17,7 @@ let
 in
   rustPlatform.buildRustPackage {
     pname = "shifty-service";
-    version = "0.1";
+    version = "v0.1.5";
     src = src;
     buildFeatures = features;
     buildNoDefaultFeatures = true;
@@ -32,5 +32,5 @@ in
       chmod a+x $out/bin/start.sh
     '';
 
-    cargoHash = "sha256-dU9ctNWkwDWjPmbqFSyqmB7VlGmV3+SVRdR+VxHyuOU=";
+    cargoHash = "sha256-Iie8p3j+iSNliHo/RwO003/DozhB55OkYEe8YtfyCIE=";
   }

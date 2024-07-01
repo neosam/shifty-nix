@@ -17,7 +17,7 @@ let
 in
   rustPlatform.buildRustPackage {
     pname = "shifty-service";
-    version = "0.1";
+    version = "__VERSION__";
     src = src;
     buildFeatures = features;
     buildNoDefaultFeatures = true;

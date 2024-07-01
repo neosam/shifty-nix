@@ -14,7 +14,7 @@ let
 in
   mkDerivation {
     pname = "shifty-frontend";
-    version = "0.1";
+    version = "__VERSION__";
     src = src;
 
     installPhase = ''
