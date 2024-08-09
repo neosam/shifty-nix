@@ -3,8 +3,8 @@ let
   specificPkgs = import (pkgs.fetchFromGitHub {
     owner = "NixOS";
     repo = "nixpkgs";
-    rev = "e9ee548d90ff586a6471b4ae80ae9cfcbceb3420";
-    sha256 = "sha256-4Zu0RYRcAY/VWuu6awwq4opuiD//ahpc2aFHg2CWqFY=";
+    rev = "cb9a96f23c491c081b38eab96d22fa958043c9fa";
+    sha256 = "sha256-IAoYyYnED7P8zrBFMnmp7ydaJfwTnwcnqxUElC1I26Y=";
   }) {};
   src = pkgs.fetchFromGitHub {
     owner = "neosam";
