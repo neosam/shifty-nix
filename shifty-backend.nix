@@ -1,18 +1,15 @@
-{ pkgs ? import <nixpkgs> {}, features ? [] }:
+{ features ? [] }:
 let
-  specificPkgs = import (pkgs.fetchFromGitHub {
-    owner = "NixOS";
-    repo = "nixpkgs";
-    rev = "cb9a96f23c491c081b38eab96d22fa958043c9fa";
-    sha256 = "sha256-IAoYyYnED7P8zrBFMnmp7ydaJfwTnwcnqxUElC1I26Y=";
+  specificPkgs = import (builtins.fetchTarball {
+    url = "https://github.com/NixOS/nixpkgs/archive/cb9a96f23c491c081b38eab96d22fa958043c9fa.tar.gz";
+    sha256 = "19nv90nr810mmckhg7qkzhjml9zgm5wk4idhrvyb63y4i74ih2i0";
   }) {};
-  src = pkgs.fetchFromGitHub {
+  src = specificPkgs.fetchFromGitHub {
     owner = "neosam";
     repo = "shifty-backend";
     rev = "e9621aa";
     sha256 = "sha256-8MQetBnIaXmcuEcA1xQMvPLECmKqQSJxTBsxpY4eKqU=";
   };
-  #src = ./.;
   rustPlatform = specificPkgs.rustPlatform;
 in
   rustPlatform.buildRustPackage {
@@ -25,12 +22,13 @@ in
 
     postInstall = ''
       cp -r $src/migrations $out/
-      echo "#!${pkgs.bash}/bin/bash" >> $out/bin/start.sh
+      echo "#!${specificPkgs.bash}/bin/bash" >> $out/bin/start.sh
       echo "set +a" >> $out/bin/start.sh
-      echo "${pkgs.sqlx-cli}/bin/sqlx migrate run --source $out/migrations/" >> $out/bin/start.sh
+      echo "${specificPkgs.sqlx-cli}/bin/sqlx migrate run --source $out/migrations/" >> $out/bin/start.sh
       echo "$out/bin/app" >> $out/bin/start.sh
       chmod a+x $out/bin/start.sh
     '';
 
     cargoHash = "sha256-iRjvzwbFCGgHX3z1ShW0vGxABOLrP6VzKvnw29z5xsk=";
   }
+
