@@ -21,13 +21,40 @@ in
     SQLX_OFFLINE = "true";
 
     postInstall = ''
-      cp -r $src/migrations $out/
-      echo "#!${specificPkgs.bash}/bin/bash" >> $out/bin/start.sh
-      echo "set +a" >> $out/bin/start.sh
-      echo "${specificPkgs.sqlx-cli}/bin/sqlx migrate run --source $out/migrations/" >> $out/bin/start.sh
-      echo "$out/bin/app" >> $out/bin/start.sh
-      chmod a+x $out/bin/start.sh
-    '';
+  cp -r $src/migrations $out/
+
+  # Create the conversion script
+  echo "#!${specificPkgs.bash}/bin/bash" > $out/bin/convert_durations.sh
+  echo "${specificPkgs.gawk}/bin/awk '{
+    while (match(\$0, /[0-9]+(\\.[0-9]+)?(ns|µs|ms|s)/)) {
+      start = RSTART
+      len = RLENGTH
+      match_str = substr(\$0, start, len)
+      unit = substr(match_str, length(match_str) - length(\"ns\") + 1)
+      num = substr(match_str, 1, length(match_str) - length(unit))
+      nanoseconds = num
+      if (unit == \"ns\") {
+        nanoseconds = num
+      } else if (unit == \"µs\") {
+        nanoseconds = num * 1000
+      } else if (unit == \"ms\") {
+        nanoseconds = num * 1000000
+      } else if (unit == \"s\") {
+        nanoseconds = num * 1000000000
+      }
+      \$0 = substr(\$0, 1, start - 1) nanoseconds substr(\$0, start + len)
+    }
+    print
+  }'" >> $out/bin/convert_durations.sh
+  chmod a+x $out/bin/convert_durations.sh
+
+  # Create the start script
+  echo "#!${specificPkgs.bash}/bin/bash" > $out/bin/start.sh
+  echo "set +a" >> $out/bin/start.sh
+  echo "${specificPkgs.sqlx-cli}/bin/sqlx migrate run --source $out/migrations/" >> $out/bin/start.sh
+  echo "$out/bin/app | $out/bin/convert_durations.sh" >> $out/bin/start.sh
+  chmod a+x $out/bin/start.sh
+  '';
 
     cargoHash = "sha256-5ikAWsLAvjR80GPjf0f+2Jp3qlfKwiNw+VjarTrySLw=";
   }
