@@ -1,8 +1,8 @@
 { features ? [] }:
 let
   specificPkgs = import (builtins.fetchTarball {
-    url = "https://github.com/NixOS/nixpkgs/archive/cb9a96f23c491c081b38eab96d22fa958043c9fa.tar.gz";
-    sha256 = "19nv90nr810mmckhg7qkzhjml9zgm5wk4idhrvyb63y4i74ih2i0";
+    url = "https://github.com/NixOS/nixpkgs/archive/76612b17c0ce71689921ca12d9ffdc9c23ce40b2.tar.gz";
+    sha256 = "03pmy2dv212mmxgcvwxinf3xy6m6zzr8ri71pda1lqggmll2na12";
   }) {};
   src = specificPkgs.fetchFromGitHub {
     owner = "neosam";

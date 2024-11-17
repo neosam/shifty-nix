@@ -1,20 +1,20 @@
 { features ? [] }:
 let
   specificPkgs = import (builtins.fetchTarball {
-    url = "https://github.com/NixOS/nixpkgs/archive/cb9a96f23c491c081b38eab96d22fa958043c9fa.tar.gz";
-    sha256 = "19nv90nr810mmckhg7qkzhjml9zgm5wk4idhrvyb63y4i74ih2i0";
+    url = "https://github.com/NixOS/nixpkgs/archive/76612b17c0ce71689921ca12d9ffdc9c23ce40b2.tar.gz";
+    sha256 = "03pmy2dv212mmxgcvwxinf3xy6m6zzr8ri71pda1lqggmll2na12";
   }) {};
   src = specificPkgs.fetchFromGitHub {
     owner = "neosam";
     repo = "shifty-backend";
-    rev = "d1ef5b7";
-    sha256 = "sha256-sp7e0bxmDJZYEBWTBX8FdxDD2R4qoehu9vAbgsKrJ0E=";
+    rev = "9a38995";
+    sha256 = "sha256-uybw+47uLzRrdydzCY+QZpP0srmJZ80fue2RZve6mzE=";
   };
   rustPlatform = specificPkgs.rustPlatform;
 in
   rustPlatform.buildRustPackage {
     pname = "shifty-service";
-    version = "d1ef5b7";
+    version = "9a38995";
     src = src;
     buildFeatures = features;
     buildNoDefaultFeatures = true;
@@ -56,6 +56,6 @@ in
   chmod a+x $out/bin/start.sh
   '';
 
-    cargoHash = "sha256-k6vQO42Sv1dkxPUNyBzSHPq1cIYSrUWz1JyATg1wqog=";
+    cargoHash = "sha256-3sh0sERGNOHVRtMHNh2k87/AI+QetuO2tNwBRJcY0dM=";
   }
 
