@@ -7,14 +7,14 @@ let
   src = specificPkgs.fetchFromGitHub {
     owner = "neosam";
     repo = "shifty-backend";
-    rev = "v0.7.0";
-    sha256 = "sha256-pokqtk8F6il89Ph2+SJIdOInwFe3DH/PVkyPFpaZIso=";
+    rev = "f7659ec";
+    sha256 = "sha256-CcJjMGE7k+gysGnfNJGTIpBnSGs5rIzGcsW2fN81C1U=";
   };
   rustPlatform = specificPkgs.rustPlatform;
 in
   rustPlatform.buildRustPackage {
     pname = "shifty-service";
-    version = "v0.7.0";
+    version = "f7659ec";
     src = src;
     buildFeatures = features;
     buildNoDefaultFeatures = true;
@@ -56,6 +56,6 @@ in
   chmod a+x $out/bin/start.sh
   '';
 
-    cargoHash = "sha256-erIboNAFEjBNIcSl7L1kYtTUZqh+qcFVkLR9PwpsehQ=";
+    cargoHash = "sha256-h+ot70MB7dgJGXf38EkLloC1eJ/5UPwzuA/fg/XpfjA=";
   }
 
