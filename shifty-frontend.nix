@@ -7,14 +7,14 @@ let
     sha256 = "sha256-IAoYyYnED7P8zrBFMnmp7ydaJfwTnwcnqxUElC1I26Y=";
   }) {};
   src = pkgs.fetchzip {
-    url = "https://github.com/neosam/shifty-dioxus/releases/download/v0.9.0-dev-02/shifty-frontend-v0.9.0-dev-02.tgz";
-    sha256 = "sha256-nfzMWoWSIwYjiD5Jf5s46KxEOV5XNqi5eua+tH7jnJ0=";
+    url = "https://github.com/neosam/shifty-dioxus/releases/download/v0.9.0/shifty-frontend-v0.9.0.tgz";
+    sha256 = "sha256-kRpGq9sh7wuqFwGg+VZ+IiMVpnVLrgqiyE3XrV3BSng=";
   };
   mkDerivation = specificPkgs.stdenv.mkDerivation;
 in
   mkDerivation {
     pname = "shifty-frontend";
-    version = "v0.9.0-dev-02";
+    version = "v0.9.0";
     src = src;
 
     installPhase = ''
