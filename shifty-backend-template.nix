@@ -52,7 +52,7 @@ in
   # Create the start script
   echo "#!${specificPkgs.bash}/bin/bash" > $out/bin/start.sh
   echo "set +a" >> $out/bin/start.sh
-  echo "${specificPkgs.sqlx-cli}/bin/sqlx migrate run --source $out/migrations/" >> $out/bin/start.sh
+  echo "${specificPkgs.sqlx-cli}/bin/sqlx migrate run --source $out/migrations/sqlite" >> $out/bin/start.sh
   echo "$out/bin/shifty_bin | $out/bin/convert_durations.sh" >> $out/bin/start.sh
   chmod a+x $out/bin/start.sh
   '';

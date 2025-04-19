@@ -22,7 +22,7 @@ in
     SQLX_OFFLINE = "true";
 
     postInstall = ''
-  cp -r $src/migrations $out/
+  cp -r $src/migrations/sqlite $out/
 
   # Create the conversion script
   echo "#!${specificPkgs.bash}/bin/bash" > $out/bin/convert_durations.sh
@@ -53,7 +53,7 @@ in
   echo "#!${specificPkgs.bash}/bin/bash" > $out/bin/start.sh
   echo "set +a" >> $out/bin/start.sh
   echo "${specificPkgs.sqlx-cli}/bin/sqlx migrate run --source $out/migrations/" >> $out/bin/start.sh
-  echo "$out/bin/app | $out/bin/convert_durations.sh" >> $out/bin/start.sh
+  echo "$out/bin/shifty_bin | $out/bin/convert_durations.sh" >> $out/bin/start.sh
   chmod a+x $out/bin/start.sh
   '';
 
