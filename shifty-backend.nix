@@ -7,14 +7,14 @@ let
   src = specificPkgs.fetchFromGitHub {
     owner = "neosam";
     repo = "shifty-backend";
-    rev = "90c733c4";
-    sha256 = "sha256-lG9dw2hSKxBeiBt+eGpnpZIlqUk0SoSdvGp+c/AFS4o=";
+    rev = "v0.12.0";
+    sha256 = "sha256-JgJPEMU2QcrzBczbfKQGLMXj3NE4625OIVCBdNnEXrM=";
   };
   rustPlatform = specificPkgs.rustPlatform;
 in
   rustPlatform.buildRustPackage {
     pname = "shifty-service";
-    version = "90c733c4";
+    version = "v0.12.0";
     src = src;
     nativeBuildInputs = with specificPkgs; [curl];
     buildFeatures = features;
@@ -22,7 +22,7 @@ in
     SQLX_OFFLINE = "true";
 
     postInstall = ''
-  cp -r $src/migrations/sqlite $out/
+  cp -r $src/migrations $out/
 
   # Create the conversion script
   echo "#!${specificPkgs.bash}/bin/bash" > $out/bin/convert_durations.sh
@@ -52,11 +52,11 @@ in
   # Create the start script
   echo "#!${specificPkgs.bash}/bin/bash" > $out/bin/start.sh
   echo "set +a" >> $out/bin/start.sh
-  echo "${specificPkgs.sqlx-cli}/bin/sqlx migrate run --source $out/migrations/" >> $out/bin/start.sh
+  echo "${specificPkgs.sqlx-cli}/bin/sqlx migrate run --source $out/migrations/sqlite" >> $out/bin/start.sh
   echo "$out/bin/shifty_bin | $out/bin/convert_durations.sh" >> $out/bin/start.sh
   chmod a+x $out/bin/start.sh
   '';
 
-    cargoHash = "sha256-BcRB8H8ipyMGOoQygbAdcZPFxOZdZVl0CV2I+S8Pe30=";
+    cargoHash = "sha256-37SHBHvepnPxoE5/qdQ3s1hLwAVxg7i1mUmAGnIi3SQ=";
   }
 
