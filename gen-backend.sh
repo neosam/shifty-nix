@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+
 if [ $# -eq 0 ]; then
     echo "Usage: $0 <version>"
     exit 1
@@ -38,8 +39,10 @@ echo "'$cargoHash'"
 
 sed -e "s/__VERSION__/$VERSION/g" -e "s|__REPO_HASH__|$repoHash|g" -e "s|__CARGO_HASH__|$cargoHash|g" $TEMPLATE_PATH > $OUTPUT_PATH
 
+set -e
+
 echo Finally, we can build
 ./build-oidc-backend.sh
 
-
+echo $VERSION > backend-version.txt
 
