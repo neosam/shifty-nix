@@ -1,11 +1,11 @@
 { features ? [], pkgs ? import <nixpkgs> {} }:
 let
-  backend = (builtins.getFlake "https://github.com/neosam/shifty-dioxus/archive/v1.5.2.zip").packages.${pkgs.system}.default;
+  backend = (builtins.getFlake "https://github.com/neosam/shifty-dioxus/archive/v1.5.3.zip").packages.${pkgs.system}.default;
 in
   backend
 #  rustPlatform.buildRustPackage {
 #    pname = "shifty-service";
-#    version = "v1.5.2";
+#    version = "v1.5.3";
 #    src = src;
 #    nativeBuildInputs = with specificPkgs; [curl];
 #    buildFeatures = features;
