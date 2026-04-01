@@ -12,7 +12,7 @@ OUTPUT_PATH="./shifty-frontend.nix"
 
 #echo Finding hash for the git repository
 
-#sed -e "s/__VERSION__/$VERSION/g" -e "s/__REPO_HASH__//g" -e "s/__CARGO_HASH__//g" $TEMPLATE_PATH > $OUTPUT_PATH
+sed -e "s/__VERSION__/$VERSION/g" -e "s/__REPO_HASH__//g" -e "s/__CARGO_HASH__//g" $TEMPLATE_PATH > $OUTPUT_PATH
 #
 #output=$(nix-build $OUTPUT_PATH 2>&1)
 #
