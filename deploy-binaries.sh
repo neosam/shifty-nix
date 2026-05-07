@@ -2,17 +2,18 @@
 
 set -e
 
-BACKEND_VERSION=$(cat backend-version.txt)
-FRONTEND_VERSION=$(cat frontend-version.txt)
+VERSION=$(cat backend-version.txt)
+SERVER=shifty.nebenan-unverpackt.de
+ARCHIVE_URL="https://github.com/neosam/shifty-backend/archive/$VERSION.zip"
 
-echo build backend
-nix build https://github.com/neosam/shifty-backend/archive/$BACKEND_VERSION.zip#backend-oidc
+echo "build backend ($VERSION)"
+nix build "$ARCHIVE_URL#backend-oidc"
 
-echo copy backend to server
-nix-copy-closure --to shifty.nebenan-unverpackt.de result
+echo "copy backend to $SERVER"
+nix-copy-closure --to "$SERVER" result
 
-echo build frontend version $FRONTEND_VERSION
-nix build https://github.com/neosam/shifty-dioxus/archive/$FRONTEND_VERSION.zip#default
+echo "build frontend ($VERSION)"
+nix build "$ARCHIVE_URL#frontend"
 
-echo copy frontend to server
-nix-copy-closure --to shifty.nebenan-unverpackt.de result
+echo "copy frontend to $SERVER"
+nix-copy-closure --to "$SERVER" result
