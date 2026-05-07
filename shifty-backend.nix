@@ -1,11 +1,11 @@
 { features ? [], pkgs ? import <nixpkgs> {} }:
 let
-  backend = (builtins.getFlake "https://github.com/neosam/shifty-backend/archive/v1.12.5.zip").packages.${pkgs.system}.backend-oidc;
+  backend = (builtins.getFlake "https://github.com/neosam/shifty-backend/archive/c7077447afd8.zip").packages.${pkgs.system}.backend-oidc;
 in
   backend
 #  rustPlatform.buildRustPackage {
 #    pname = "shifty-service";
-#    version = "v1.12.5";
+#    version = "c7077447afd8";
 #    src = src;
 #    nativeBuildInputs = with specificPkgs; [curl];
 #    buildFeatures = features;
@@ -48,6 +48,6 @@ in
 #  chmod a+x $out/bin/start.sh
 #  '';
 #
-#    cargoHash = "";
+#    cargoHash = "__CARGO_HASH__";
 #  }
 
