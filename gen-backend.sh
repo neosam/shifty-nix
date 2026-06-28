@@ -12,13 +12,14 @@ fi
 
 VERSION=$1
 
+# Frontend pin (zieht aus dem gleichen shifty-backend-Flake)
+sed -e "s/__VERSION__/$VERSION/g" \
+    ./shifty-frontend-template.nix > ./shifty-frontend.nix
+
 # Backend pin
 sed -e "s/__VERSION__/$VERSION/g" \
     ./shifty-backend-template.nix > ./shifty-backend.nix
 
-# Frontend pin (zieht aus dem gleichen shifty-backend-Flake)
-sed -e "s/__VERSION__/$VERSION/g" \
-    ./shifty-frontend-template.nix > ./shifty-frontend.nix
 
 # Local build to verify the pin
 ./build-oidc-backend.sh
