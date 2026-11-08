@@ -1,1 +1,1 @@
-fix-slot-500-und-urheberschaft-v2
+v2.7.0
