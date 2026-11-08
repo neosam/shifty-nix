@@ -1,5 +1,5 @@
 { features ? [], pkgs ? import <nixpkgs> {} }:
 let
-  frontend = (builtins.getFlake "https://github.com/neosam/shifty-backend/archive/push-tmpvpwrtmnyy.zip").packages.${pkgs.system}.frontend;
+  frontend = (builtins.getFlake "https://github.com/neosam/shifty-backend/archive/push-uounsrsrxrko.zip").packages.${pkgs.system}.frontend;
 in
   frontend
